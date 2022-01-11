@@ -16,7 +16,7 @@ public class PathFinder : MonoBehaviour
         {
             _positions.Add(new Vector3(x * _mazeSpawner.CellSize.x, y * _mazeSpawner.CellSize.y, y * _mazeSpawner.CellSize.z));
 
-            MazeGeneratorCell currentCell = _mazeSpawner.Cells[x, y];
+            MazeCell currentCell = _mazeSpawner.Cells[x, y];
 
             if (x > 0 &&
                 !currentCell.WallLeft &&

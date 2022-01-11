@@ -13,12 +13,12 @@ public class MazeSpawner : MonoBehaviour
     [SerializeField] private Material _trap;
     [SerializeField] private int _trapsOnMazeCounter;
     private Cell[,] _spawnedCells;
-    private MazeGeneratorCell[,] _cells;
+    private MazeCell[,] _cells;
     private Vector2Int _finishPosition;
 
     public Vector2Int FinishPosition => _finishPosition;
     public Vector3 CellSize => _cellSize;
-    public MazeGeneratorCell[,] Cells => _cells;
+    public MazeCell[,] Cells => _cells;
 
     public event UnityAction MazeSpawned;
 

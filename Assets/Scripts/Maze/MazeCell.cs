@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MazeGeneratorCell
+public class MazeCell
 {
     private int _coordinateX;
     private int _coordinateY;
@@ -18,7 +18,7 @@ public class MazeGeneratorCell
     public int Y => _coordinateY;
     public int DistanceFromStart => _distanceFromStart;
 
-    public MazeGeneratorCell(int x, int y)
+    public MazeCell(int x, int y)
     {
         _coordinateX = x;
         _coordinateY = y;

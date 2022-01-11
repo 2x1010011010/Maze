@@ -12,15 +12,15 @@ public class MazeGenerator
         _height = fieldSize;
     }
 
-    public MazeGeneratorCell[,] GenerateMaze() 
+    public MazeCell[,] GenerateMaze() 
     {
-        MazeGeneratorCell[,] mazeCells = new MazeGeneratorCell[_width, _height];
+        MazeCell[,] mazeCells = new MazeCell[_width, _height];
 
         for (int x = 0; x < mazeCells.GetLength(0); x++)
         {
             for (int y = 0; y < mazeCells.GetLength(1); y++)
             {
-                mazeCells[x, y] = new MazeGeneratorCell(x, y);
+                mazeCells[x, y] = new MazeCell(x, y);
             }
         }
 
@@ -29,7 +29,7 @@ public class MazeGenerator
         return mazeCells;
     }
 
-    private void RemoveWalls(MazeGeneratorCell[,] maze)
+    private void RemoveWalls(MazeCell[,] maze)
     {
         for (int x = 0; x < maze.GetLength(0); x++)
         {
@@ -43,15 +43,15 @@ public class MazeGenerator
             maze[_width - 1, y].RemoveFloor();
         }
 
-        MazeGeneratorCell current = maze[0, 0];
+        MazeCell current = maze[0, 0];
         current.VisitCell();
         current.SetDistanceFromStart(0);
 
-        Stack<MazeGeneratorCell> stackCells = new Stack<MazeGeneratorCell>();
+        Stack<MazeCell> stackCells = new Stack<MazeCell>();
 
         do
         {
-            List<MazeGeneratorCell> unvisitedCells = new List<MazeGeneratorCell>();
+            List<MazeCell> unvisitedCells = new List<MazeCell>();
             int x = current.X;
             int y = current.Y;
 
@@ -77,7 +77,7 @@ public class MazeGenerator
 
             if (unvisitedCells.Count > 0)
             {
-                MazeGeneratorCell chosen = unvisitedCells[UnityEngine.Random.Range(0, unvisitedCells.Count)];
+                MazeCell chosen = unvisitedCells[UnityEngine.Random.Range(0, unvisitedCells.Count)];
                 RemoveWall(current, chosen);
                 chosen.VisitCell();
                 current = chosen;
@@ -94,7 +94,7 @@ public class MazeGenerator
 
     }
 
-    private void RemoveWall(MazeGeneratorCell current, MazeGeneratorCell chosen)
+    private void RemoveWall(MazeCell current, MazeCell chosen)
     {
         if (current.X == chosen.X)
         {
