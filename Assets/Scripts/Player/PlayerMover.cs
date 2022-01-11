@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerMover : MonoBehaviour
 {
     private PathFinder _pathFinder;
-    private List<Vector3> _pathPoints;
+    private List<Vector3> _pathPoints = new List<Vector3>();
 
-    public void ShowPoints()
+    private void Start()
     {
+        _pathFinder = GetComponent<PathFinder>();
         _pathPoints = _pathFinder.FindPath();
-
-        foreach (var point in _pathPoints)
+        foreach(var point in _pathPoints)
             Debug.Log(point.x + " " + point.y + " " + point.z);
     }
 }

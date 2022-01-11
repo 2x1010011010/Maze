@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathFinder
+public class PathFinder : MonoBehaviour
 {
-    private MazeSpawner _mazeSpawner;
+    [SerializeField] private MazeSpawner _mazeSpawner;
     private List<Vector3> _positions = new List<Vector3>();
 
     public List<Vector3> FindPath()
     {
         int x = _mazeSpawner.FinishPosition.x;
         int y = _mazeSpawner.FinishPosition.y;
+
 
         while (x != 0 || y != 0)
         {

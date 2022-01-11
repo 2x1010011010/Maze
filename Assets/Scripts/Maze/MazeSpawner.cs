@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MazeSpawner : MonoBehaviour
 {
@@ -19,7 +20,9 @@ public class MazeSpawner : MonoBehaviour
     public Vector3 CellSize => _cellSize;
     public MazeGeneratorCell[,] Cells => _cells;
 
-    private void Start()
+    public event UnityAction MazeSpawned;
+
+    private void Awake()
     {
         MazeGenerator generator = new MazeGenerator(_squareSize);
         _cells = generator.GenerateMaze();
@@ -41,12 +44,14 @@ public class MazeSpawner : MonoBehaviour
         {
             SetTrapsOnMaze();
         }
+
+        MazeSpawned?.Invoke();
     }
 
     private void SetTrapsOnMaze() 
     {
-        int x = Random.Range(0, _squareSize - 2);
-        int y = Random.Range(0, _squareSize - 2);
+        int x = Random.Range(1, _squareSize - 2);
+        int y = Random.Range(1, _squareSize - 2);
 
         if (x != 0 && y != 0 || x != _squareSize - 2 && y != _squareSize - 2)
         {
