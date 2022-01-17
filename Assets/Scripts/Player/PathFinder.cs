@@ -5,7 +5,7 @@ public class PathFinder : MonoBehaviour
 {
     [SerializeField] private MazeSpawner _mazeSpawner;
     private List<Vector3> _positions = new List<Vector3>();
-
+   
     public List<Vector3> FindPath()
     {
         int x = _mazeSpawner.FinishPosition.x;

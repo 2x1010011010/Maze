@@ -29,21 +29,21 @@ public class MazeGenerator
         return mazeCells;
     }
 
-    private void RemoveWalls(MazeCell[,] maze)
+    private void RemoveWalls(MazeCell[,] cells)
     {
-        for (int x = 0; x < maze.GetLength(0); x++)
+        for (int x = 0; x < cells.GetLength(0); x++)
         {
-            maze[x, _height - 1].RemoveLeftWall();
-            maze[x, _height - 1].RemoveFloor();
+            cells[x, _height - 1].RemoveLeftWall();
+            cells[x, _height - 1].RemoveFloor();
         }
         
-        for (int y = 0; y < maze.GetLength(1); y++)
+        for (int y = 0; y < cells.GetLength(1); y++)
         {
-            maze[_width - 1, y].RemoveBottomWall();
-            maze[_width - 1, y].RemoveFloor();
+            cells[_width - 1, y].RemoveBottomWall();
+            cells[_width - 1, y].RemoveFloor();
         }
 
-        MazeCell current = maze[0, 0];
+        MazeCell current = cells[0, 0];
         current.VisitCell();
         current.SetDistanceFromStart(0);
 
@@ -55,24 +55,24 @@ public class MazeGenerator
             int x = current.X;
             int y = current.Y;
 
-            if (x > 0 && !maze[x - 1, y].Visited)
+            if (x > 0 && !cells[x - 1, y].Visited)
             {
-                unvisitedCells.Add(maze[x - 1, y]);
+                unvisitedCells.Add(cells[x - 1, y]);
             }
 
-            if (y > 0 && !maze[x, y - 1].Visited)
+            if (y > 0 && !cells[x, y - 1].Visited)
             {
-                unvisitedCells.Add(maze[x, y - 1]);
+                unvisitedCells.Add(cells[x, y - 1]);
             }
 
-            if (x < _width - 2 && !maze[x + 1, y].Visited)
+            if (x < _width - 2 && !cells[x + 1, y].Visited)
             {
-                unvisitedCells.Add(maze[x + 1, y]);
+                unvisitedCells.Add(cells[x + 1, y]);
             }
 
-            if (y < _height - 2 && !maze[x, y + 1].Visited)
+            if (y < _height - 2 && !cells[x, y + 1].Visited)
             {
-                unvisitedCells.Add(maze[x, y + 1]);
+                unvisitedCells.Add(cells[x, y + 1]);
             }
 
             if (unvisitedCells.Count > 0)

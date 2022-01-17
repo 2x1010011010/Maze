@@ -19,10 +19,11 @@ public class MazeSpawner : MonoBehaviour
     public Vector2Int FinishPosition => _finishPosition;
     public Vector3 CellSize => _cellSize;
     public MazeCell[,] Cells => _cells;
+    public Cell[,] SpawnedCells => _spawnedCells;
 
     public event UnityAction MazeSpawned;
 
-    private void Awake()
+    private void Start()
     {
         MazeGenerator generator = new MazeGenerator(_squareSize);
         _cells = generator.GenerateMaze();
